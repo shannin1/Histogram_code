@@ -32,7 +32,8 @@ def MakeHistos(proc, vals):
 
      # bs = list(filter(lambda x: abs(x.pdgid)== 5, event.particles))
       #print(event.particles)
-      
+    
+      # Switch to abs(x.parent)== 4 for second parent particle
       bs = list(filter(lambda x: x.pdgid== 5, event.particles))
       bs = list(filter(lambda x: abs(x.parent)== 3, bs))
       bbars = list(filter(lambda x: x.pdgid== -5, event.particles))
