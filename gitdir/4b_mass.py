@@ -43,28 +43,22 @@ def MakeHistos(proc, vals):
       bbar3s = list(filter(lambda x: x.pdgid== -5, event.particles))
       bbar3s = list(filter(lambda x: abs(x.parent)== 3, bbar3s))
 
-      #print('bs:',bs)
+      
       
       """if(len(hs)!=1 or len(ys)!=1):
         print("WARNING: More than one H/y in event")
       """
-      #print('hvalue: ',hs[0].p4().mass)
-      #print('yvalue: ',ys[0].p4().mass)
-      #print(bs[0].p4().mass)
+      
       h_myh.Fill((b3s[0].p4() + bbar3s[0].p4()+b4s[0].p4() + bbar4s[0].p4()).mass )
       
-      #print('sum',(bs[0].p4() + bbars[0].p4()).mass )
-      sum=(b3s[0].p4() + bbar3s[0].p4()+b4s[0].p4() + bbar4s[0].p4()).mass
-      print(sum)
-      if (sum>1399.97) and (sum<1400.03):
-        bin+=1
+      
       
       #h_p    = np.sqrt(bs[0].energy**2-bs[0].mass**2)
       #ctheta = bs[0].pz/h_p
       
 
       #h_ctheta.Fill(ctheta)
-  print('bin',bin)
+  
 
   fout.Write()
   fout.Close()
@@ -80,8 +74,7 @@ def MakePlot(procs,log=True,ofile="test.png"):
 
   for proc in procs:
     h     = f.Get('h_myh_{0}'.format(proc))
-    #print('h: ',h)
-    #print('int: ',h.Integral())
+    
     #h.Scale(1./h.Integral())
     #hist, edges_2D = hist2array(h,return_edges=True)
     #edges = edges_2D[0]
@@ -91,13 +84,9 @@ def MakePlot(procs,log=True,ofile="test.png"):
     #hist = np.array([h.GetBinContent(i) for i in range(1, h.GetNbinsX() + 1)])
 
     nbins = h.GetNbinsX()
-    print(nbins)
     edges = [h.GetBinLowEdge(i) for i in range(1, nbins + 2)]  # Include overflow bin
     hist = np.array([h.GetBinContent(i) for i in range(1, nbins + 1)])  # Exclude overflow bin
 
-
-    print(edges)
-    print(hist)
 
     histos.append(hist)
     colors.append(procs[proc]["color"])
@@ -113,7 +102,6 @@ def MakePlot(procs,log=True,ofile="test.png"):
   else:
     ax.set_ylim([0.,50])
   ax.set_xlim([1399.97,1400.03])
-  #ax.set_xlim([4.21398*2, 4.21341*2])
   plt.xlabel("$m_{b,b~}$",horizontalalignment='left', x=1.0)
   plt.ylabel("Events / bin A.U."  ,horizontalalignment='right', y=1.0)
 

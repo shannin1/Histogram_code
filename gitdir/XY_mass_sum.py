@@ -32,13 +32,11 @@ def MakeHistos(proc, vals):
       
       hs = list(filter(lambda x: abs(x.pdgid)== 25, event.particles))
       ys = list(filter(lambda x: abs(x.pdgid)== 35, event.particles))
-      #print('hs:',hs)
-      #print('ys:',ys)
+      
       if(len(hs)!=1 or len(ys)!=1):
         print("WARNING: More than one H/y in event")
 
-      #print('hvalue: ',hs[0].p4().mass)
-      #print('yvalue: ',ys[0].p4().mass)
+      
       h_myh.Fill((hs[0].p4() + ys[0].p4()).mass )
       h_p    = np.sqrt(hs[0].energy**2-hs[0].mass**2)
       ctheta = hs[0].pz/h_p
@@ -59,8 +57,7 @@ def MakePlot(procs,log=True,ofile="test.png"):
 
   for proc in procs:
     h     = f.Get('h_myh_{0}'.format(proc))
-    #print('h: ',h)
-    #print('int: ',h.Integral())
+    
     #h.Scale(1./h.Integral())
     #hist, edges_2D = hist2array(h,return_edges=True)
     #edges = edges_2D[0]
