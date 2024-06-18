@@ -34,8 +34,10 @@ def MakeHistos(proc, vals):
       
       #hs = list(filter(lambda x: abs(x.pdgid)== 25, event.particles))
       ys = list(filter(lambda x: abs(x.pdgid)== 35, event.particles))
+      xs = list(filter(lambda x: abs(x.pdgid)== 45, event.particles))
       #print('hs:',hs)
-      print('ys:',ys)
+      #print('ys:',ys)
+      print('xs:',xs)
       #if(len(hs)!=1 or len(ys)!=1):
       #  print("WARNING: More than one H/y in event")
 
